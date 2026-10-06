@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Die persönliche Startseite von Finn – unterwegs zwischen Karten, Orten und Ideen.">
+  <title>Finn — Karten, Orte, Ideen</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f4ef;
+      --surface: #fffefa;
+      --ink: #202a24;
+      --muted: #536159;
+      --line: #d8ddd5;
+      --green: #245b43;
+      --lime: #d9ed9a;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--green);
+    }
+
+    a:focus-visible {
+      outline: 3px solid #9b5a16;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .page {
+      width: min(100% - 3rem, 1060px);
+      margin-inline: auto;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 750;
+      letter-spacing: -0.04em;
+      text-decoration: none;
+    }
+
+    .header-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    main {
+      padding-block: clamp(3rem, 8vw, 6.5rem);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.7fr);
+      align-items: center;
+      gap: clamp(2rem, 8vw, 6rem);
+      padding-bottom: clamp(4rem, 9vw, 7rem);
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 0.8rem;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 750;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin-bottom: 1.25rem;
+      font-family: var(--serif);
+      font-size: clamp(3.3rem, 9vw, 6.5rem);
+      font-weight: 400;
+      letter-spacing: -0.075em;
+      line-height: 0.98;
+    }
+
+    h1 span {
+      color: var(--green);
+      font-style: italic;
+    }
+
+    .intro-copy {
+      max-width: 610px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.15rem);
+    }
+
+    .intro-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .brand-mark {
+      margin: 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .brand-mark::before {
+      position: absolute;
+      z-index: -1;
+      inset: 1rem -1rem -1rem 1rem;
+      border: 1px solid #9aa994;
+      content: "";
+    }
+
+    .monogram {
+      display: grid;
+      width: 100%;
+      aspect-ratio: 1;
+      place-items: center;
+      background: var(--green);
+      color: var(--lime);
+      font-family: var(--serif);
+      font-size: clamp(9rem, 22vw, 16rem);
+      line-height: 1;
+    }
+
+    .brand-mark figcaption {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .section {
+      padding-block: clamp(2.75rem, 6vw, 4.5rem);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 400;
+      letter-spacing: -0.055em;
+      line-height: 1.1;
+    }
+
+    .section-heading > p {
+      max-width: 290px;
+      margin-bottom: 0.15rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    caption {
+      padding: 0.85rem 1rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 0.9rem 1rem;
+      border-top: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    thead th {
+      border-top: 0;
+      background: #e9ede5;
+      color: #34463a;
+      font-size: 0.75rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    tbody th {
+      width: 90px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 650;
+    }
+
+    td:last-child {
+      color: var(--muted);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--green);
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.35 / 1;
+      background: #e1e5db;
+      object-fit: cover;
+    }
+
+    .card-copy {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 1.15rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.4rem;
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card .card-link {
+      margin-top: auto;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 700px) {
+      .intro {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+      }
+
+      .brand-mark {
+        width: min(75%, 340px);
+        margin-inline: auto;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        display: grid;
+        grid-template-columns: minmax(110px, 0.8fr) minmax(0, 1.2fr);
+      }
+
+      .card img {
+        height: 100%;
+        aspect-ratio: auto;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .page {
+        width: min(100% - 2rem, 1060px);
+      }
+
+      .header-note {
+        max-width: 130px;
+        text-align: right;
+      }
+
+      th,
+      td {
+        padding: 0.75rem 0.65rem;
+      }
+
+      thead th {
+        font-size: 0.67rem;
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+      }
+
+      .card img {
+        aspect-ratio: 1.8 / 1;
+      }
+
+      .site-footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="wordmark" href="#start" aria-label="Finn — zum Seitenanfang">Finn</a>
+      <p class="header-note">Persönliche Notizen aus der Geoinformatik</p>
+    </header>
+
+    <main id="start">
+      <section class="intro" aria-labelledby="intro-title">
+        <div>
+          <p class="eyebrow">Hallo, ich bin Finn</p>
+          <h1 id="intro-title">Karten, Orte <span>&amp; Ideen.</span></h1>
+          <div class="intro-copy">
+            <p>Mich interessiert, wie wir unsere Welt lesen können: durch Daten, durch Karten und vor allem durch die Geschichten, die Orte erzählen.</p>
+            <p>Hier sammle ich Stationen meines Weges, kleine Entdeckungen und Projekte rund um Geoinformatik. Schön, dass du vorbeischaust.</p>
+          </div>
+        </div>
+        <figure class="brand-mark">
+          <div class="monogram" role="img" aria-label="Logo mit dem Buchstaben F">F</div>
+          <figcaption>Finn · neugierig auf die Welt</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" aria-labelledby="weg-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Ein paar Koordinaten</p>
+            <h2 id="weg-title">Mein Lebenslauf</h2>
+          </div>
+          <p>Sechs kleine Stationen zwischen ersten Fragen und neuen Perspektiven.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Stationen, die meinen Blick auf Orte und Karten geprägt haben</caption>
+            <thead>
+              <tr>
+                <th scope="col">Jahr</th>
+                <th scope="col">Station</th>
+                <th scope="col">Ort</th>
+                <th scope="col">Stichwort</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">2019</th>
+                <td>Schulzeit</td>
+                <td>Heimatort</td>
+                <td>Neugier</td>
+              </tr>
+              <tr>
+                <th scope="row">2021</th>
+                <td>Erste eigene Karten</td>
+                <td>Am Schreibtisch</td>
+                <td>Perspektivwechsel</td>
+              </tr>
+              <tr>
+                <th scope="row">2022</th>
+                <td>Studienstart</td>
+                <td>Hochschule</td>
+                <td>Neue Fragen</td>
+              </tr>
+              <tr>
+                <th scope="row">2023</th>
+                <td>Räumliche Daten</td>
+                <td>Im Studium</td>
+                <td>GIS</td>
+              </tr>
+              <tr>
+                <th scope="row">2025</th>
+                <td>Eigene Projekte</td>
+                <td>Überall</td>
+                <td>Ausprobieren</td>
+              </tr>
+              <tr>
+                <th scope="row">Heute</th>
+                <td>Weiter entdecken</td>
+                <td>Unterwegs</td>
+                <td>Offene Karte</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="fundstuecke-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">Zum Weiterklicken</p>
+            <h2 id="fundstuecke-title">Fundstücke</h2>
+          </div>
+          <p>Drei gute Startpunkte für alle, die Karten und offene Daten mögen.</p>
+        </div>
+        <div class="gallery">
+          <a class="card" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer" aria-label="OpenStreetMap öffnen (neuer Tab)">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Weite Landschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
+            <div class="card-copy">
+              <h3>OpenStreetMap</h3>
+              <p>Eine offene Weltkarte, gebaut von Menschen für Menschen.</p>
+              <span class="card-link">Karte entdecken ↗</span>
+            </div>
+          </a>
+          <a class="card" href="https://qgis.org/" target="_blank" rel="noopener noreferrer" aria-label="QGIS öffnen (neuer Tab)">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Die Erde aus dem All bei Nacht" width="900" height="667" loading="lazy">
+            <div class="card-copy">
+              <h3>QGIS</h3>
+              <p>Freie Software, um räumliche Daten sichtbar zu machen.</p>
+              <span class="card-link">Werkzeug kennenlernen ↗</span>
+            </div>
+          </a>
+          <a class="card" href="https://earthobservatory.nasa.gov/" target="_blank" rel="noopener noreferrer" aria-label="NASA Earth Observatory öffnen (neuer Tab)">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Berglandschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
+            <div class="card-copy">
+              <h3>Earth Observatory</h3>
+              <p>Unser Planet in Bildern und Geschichten aus dem All.</p>
+              <span class="card-link">Erde betrachten ↗</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Mit Neugier gemacht.</p>
+      <p>© Finn · Eine kleine Ecke im Web</p>
+    </footer>
+  </div>
+</body>
+</html>
