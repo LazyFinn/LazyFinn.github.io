@@ -4,17 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f4ef">
-  <meta name="description" content="Die persönliche Startseite von Finn – unterwegs zwischen Karten, Orten und Ideen.">
-  <title>Finn — Karten, Orte, Ideen</title>
+  <meta name="description" content="Auf Finns persönlicher Website geht es um Geoinformatik, Karten und eigene Projekte.">
+  <title>Finn – Geoinformatik, Karten und Projekte</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="page">
     <header class="site-header">
-      <a class="wordmark" href="#start" aria-label="Finn — zum Seitenanfang">Finn</a>
+      <a class="wordmark" href="#start" aria-label="Finn – zur Startseite">Finn</a>
       <div class="header-actions">
-        <p class="header-note">Persönliche Notizen aus der Geoinformatik</p>
-        <button class="theme-toggle" type="button" aria-label="Dark Mode aktivieren" title="Dark Mode aktivieren">
+        <p class="header-note">Geoinformatik, Karten und eigene Projekte</p>
+        <nav class="site-nav" aria-label="Hauptnavigation">
+          <a href="#about">Über mich</a>
+          <a href="#news">Aktuelles</a>
+          <a href="#projects">Projekte</a>
+          <a href="#start" aria-label="Zurück nach oben" title="Zurück nach oben">Nach oben</a>
+        </nav>
+        <button class="theme-toggle" type="button" aria-label="Dunkles Design aktivieren" title="Dunkles Design aktivieren">
           <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"></path>
           </svg>
@@ -27,121 +33,257 @@
     </header>
 
     <main id="start">
-      <section class="intro" aria-labelledby="intro-title">
-        <div>
-          <p class="eyebrow">Hallo, ich bin Finn</p>
-          <h1 id="intro-title">Karten, Orte <span>&amp; Ideen.</span></h1>
-          <div class="intro-copy">
-            <p>Mich interessiert, wie wir unsere Welt lesen können: durch Daten, durch Karten und vor allem durch die Geschichten, die Orte erzählen.</p>
-            <p>Hier sammle ich Stationen meines Weges, kleine Entdeckungen und Projekte rund um Geoinformatik. Schön, dass du vorbeischaust.</p>
+      <section class="section about-section" id="about" aria-labelledby="about-title">
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">Über mich · Hallo, ich bin Finn</p>
+            <h1 id="about-title">Karten, Orte <span>&amp; Ideen.</span></h1>
+            <div class="intro-copy">
+              <p>Mich interessiert, was Geodaten über unsere Umgebung verraten – und wie Karten helfen, Zusammenhänge sichtbar zu machen.</p>
+              <p>Hier findest du ein paar Einblicke in meinen bisherigen Weg, aktuelle Entdeckungen und Projekte rund um die Geoinformatik. Schön, dass du da bist.</p>
+            </div>
+          </div>
+          <figure class="portrait-placeholder">
+            <svg viewBox="0 0 240 240" role="img" aria-labelledby="portrait-title">
+              <title id="portrait-title">Neutrale Silhouette als Platzhalter für ein persönliches Foto</title>
+              <circle cx="120" cy="82" r="42"></circle>
+              <path d="M42 222c4-48 34-76 78-76s74 28 78 76"></path>
+            </svg>
+            <figcaption>Hier kommt bald ein persönliches Foto hin.</figcaption>
+          </figure>
+        </div>
+
+        <div class="about-details">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Mein Weg</p>
+              <h2 id="weg-title">Mein Lebenslauf</h2>
+            </div>
+            <p>Ein paar Stationen, die mich bis hierher begleitet haben.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <caption>Einige wichtige Stationen meines bisherigen Weges</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Jahr</th>
+                  <th scope="col">Station</th>
+                  <th scope="col">Ort</th>
+                  <th scope="col">Was ich mitnehme</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">2009–2023</th>
+                  <td>Schulzeit</td>
+                  <td>Zweibrücken</td>
+                  <td>Neugier</td>
+                </tr>
+                <tr>
+                  <th scope="row">2021</th>
+                  <td>Erste eigene Karten</td>
+                  <td>Am Schreibtisch</td>
+                  <td>Perspektivwechsel</td>
+                </tr>
+                <tr>
+                  <th scope="row">Seit 2024</th>
+                  <td>Studienstart</td>
+                  <td>Hochschule Mainz</td>
+                  <td>Neue Fragen</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <figure class="brand-mark">
-          <div class="monogram" role="img" aria-label="Logo mit dem Buchstaben F">F</div>
-          <figcaption>Finn · neugierig auf die Welt</figcaption>
-        </figure>
       </section>
 
-      <section class="section" aria-labelledby="weg-title">
+      <section class="section" id="news" aria-labelledby="news-title">
         <div class="section-heading">
           <div>
-            <p class="section-label">Ein paar Koordinaten</p>
-            <h2 id="weg-title">Mein Lebenslauf</h2>
+            <p class="section-label">Auf dem Laufenden</p>
+            <h2 id="news-title">Aktuelles</h2>
           </div>
-          <p>Drei kleine Stationen zwischen ersten Fragen und neuen Perspektiven.</p>
+          <p>Was es bei mir im Studium und rund um die Geoinformatik Neues gibt.</p>
         </div>
-        <div class="table-wrap">
-          <table>
-            <caption>Stationen, die meinen Blick auf Orte und Karten geprägt haben</caption>
-            <thead>
-              <tr>
-                <th scope="col">Jahr</th>
-                <th scope="col">Station</th>
-                <th scope="col">Ort</th>
-                <th scope="col">Stichwort</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">2009-2023</th>
-                <td>Schulzeit</td>
-                <td>Zweibrücken</td>
-                <td>Neugier</td>
-              </tr>
-              <tr>
-                <th scope="row">2021</th>
-                <td>Erste eigene Karten</td>
-                <td>Am Schreibtisch</td>
-                <td>Perspektivwechsel</td>
-              </tr>
-              <tr>
-                <th scope="row">2024-Gegenwart</th>
-                <td>Studienstart</td>
-                <td>Hochschule Mainz</td>
-                <td>Neue Fragen</td>
-              </tr>
-              
-            </tbody>
-          </table>
+        <div class="news-grid" id="news-list" aria-live="polite">
+          <p class="news-status" role="status">Meldungen werden geladen …</p>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="fundstuecke-title">
+      <section class="section" id="projects" aria-labelledby="projects-title">
         <div class="section-heading">
           <div>
-            <p class="section-label">Zum Weiterklicken</p>
-            <h2 id="fundstuecke-title">Fundstücke</h2>
+            <p class="section-label">Zum Entdecken</p>
+            <h2 id="projects-title">Projekte</h2>
           </div>
-          <p>Drei gute Startpunkte für alle, die Karten und offene Daten mögen.</p>
+          <p>Hier geht es um Webkarten und offene Geodaten.</p>
         </div>
-        <div class="gallery">
-          <a class="card" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer" aria-label="OpenStreetMap öffnen (neuer Tab)">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Weite Landschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
-            <div class="card-copy">
-              <h3>OpenStreetMap</h3>
-              <p>Eine offene Weltkarte, gebaut von Menschen für Menschen.</p>
-              <span class="card-link">Karte entdecken ↗</span>
+        <article class="project-placeholder">
+          <div class="project-map-art" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>
+            <p class="section-label">In Arbeit</p>
+            <h3>Meine Projekte folgen bald.</h3>
+            <p>Ich arbeite gerade an eigenen Webkarten und Webseiten. Sobald sie fertig sind, findest du sie hier.</p>
+          </div>
+        </article>
+
+        <div class="resources">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Nützliche Links</p>
+              <h3>Werkzeuge &amp; Inspiration</h3>
             </div>
-          </a>
-          <a class="card" href="https://qgis.org/" target="_blank" rel="noopener noreferrer" aria-label="QGIS öffnen (neuer Tab)">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Die Erde aus dem All bei Nacht" width="900" height="667" loading="lazy">
-            <div class="card-copy">
-              <h3>QGIS</h3>
-              <p>Freie Software, um räumliche Daten sichtbar zu machen.</p>
-              <span class="card-link">Werkzeug kennenlernen ↗</span>
-            </div>
-          </a>
-          <a class="card" href="https://earthobservatory.nasa.gov/" target="_blank" rel="noopener noreferrer" aria-label="NASA Earth Observatory öffnen (neuer Tab)">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Berglandschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
-            <div class="card-copy">
-              <h3>Earth Observatory</h3>
-              <p>Unser Planet in Bildern und Geschichten aus dem All.</p>
-              <span class="card-link">Erde betrachten ↗</span>
-            </div>
-          </a>
+            <p>Ein paar hilfreiche Seiten rund um Karten und offene Geodaten.</p>
+          </div>
+          <div class="gallery">
+            <a class="card" href="https://www.openstreetmap.org/" target="_blank" rel="noopener noreferrer" aria-label="OpenStreetMap öffnen (neuer Tab)">
+              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Weite Landschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
+              <div class="card-copy">
+                <h3>OpenStreetMap</h3>
+                <p>Eine Weltkarte, die Menschen gemeinsam erstellen und aktuell halten.</p>
+                <span class="card-link">OpenStreetMap ansehen ↗</span>
+              </div>
+            </a>
+            <a class="card" href="https://qgis.org/" target="_blank" rel="noopener noreferrer" aria-label="QGIS öffnen (neuer Tab)">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Die Erde aus dem All bei Nacht" width="900" height="667" loading="lazy">
+              <div class="card-copy">
+                <h3>QGIS</h3>
+                <p>Ein kostenloses Programm, mit dem sich Geodaten erkunden und Karten gestalten lassen.</p>
+                <span class="card-link">QGIS kennenlernen ↗</span>
+              </div>
+            </a>
+            <a class="card" href="https://earthobservatory.nasa.gov/" target="_blank" rel="noopener noreferrer" aria-label="NASA Earth Observatory öffnen (neuer Tab)">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Berglandschaft aus erhöhter Perspektive" width="900" height="667" loading="lazy">
+              <div class="card-copy">
+                <h3>Earth Observatory</h3>
+                <p>Bilder und Berichte der NASA über unseren Planeten.</p>
+                <span class="card-link">Beiträge ansehen ↗</span>
+              </div>
+            </a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Mit Neugier gemacht.</p>
-      <p>© Finn · Eine kleine Ecke im Web</p>
+      <p>Mit Neugier gestaltet.</p>
+      <p>© Finn · Meine kleine Website</p>
     </footer>
   </div>
+  <nav class="social-links" aria-label="Social Media">
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube öffnen (neuer Tab)" title="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="4"></rect>
+        <path d="m10 9 5 3-5 3z"></path>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram öffnen (neuer Tab)" title="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle class="social-icon-dot" cx="17.5" cy="6.8" r="1"></circle>
+      </svg>
+    </a>
+    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub öffnen (neuer Tab)" title="GitHub">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m8 6-5 6 5 6M16 6l5 6-5 6m-2-14-4 16"></path>
+      </svg>
+    </a>
+  </nav>
     <script>
       const themeToggle = document.querySelector(".theme-toggle");
       const themeColor = document.querySelector('meta[name="theme-color"]');
+      const newsList = document.querySelector("#news-list");
 
       themeToggle.addEventListener("click", () => {
         const isDark = document.documentElement.dataset.theme !== "dark";
         const nextTheme = isDark ? "dark" : "light";
-        const nextLabel = isDark ? "Light Mode aktivieren" : "Dark Mode aktivieren";
+        const nextLabel = isDark ? "Helles Design aktivieren" : "Dunkles Design aktivieren";
 
         document.documentElement.dataset.theme = nextTheme;
         themeToggle.setAttribute("aria-label", nextLabel);
         themeToggle.title = nextLabel;
         themeColor.content = isDark ? "#171d19" : "#f5f4ef";
       });
+
+      async function loadNews() {
+        try {
+          const response = await fetch("assets/news.json");
+          if (!response.ok) {
+            throw new Error(`News konnten nicht geladen werden (HTTP ${response.status}).`);
+          }
+
+          const news = await response.json();
+          if (!Array.isArray(news)) {
+            throw new TypeError("Die News-Datei muss eine Liste von Meldungen enthalten.");
+          }
+
+          newsList.replaceChildren();
+          if (news.length === 0) {
+            const status = document.createElement("p");
+            status.className = "news-status";
+            status.setAttribute("role", "status");
+            status.textContent = "Zurzeit gibt es keine neuen Meldungen.";
+            newsList.append(status);
+            return;
+          }
+
+          const dateFormatter = new Intl.DateTimeFormat("de-DE", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          });
+
+          news.forEach((item) => {
+            if (!item.title || !item.date || !item.summary || !item.image || !item.imageAlt) {
+              throw new TypeError("Jede Meldung braucht Titel, Datum, Kurztext, Bild und Bildbeschreibung.");
+            }
+
+            const article = document.createElement("article");
+            article.className = "news-card";
+
+            const image = document.createElement("img");
+            image.src = item.image;
+            image.alt = item.imageAlt;
+            image.loading = "lazy";
+            image.width = 900;
+            image.height = 600;
+
+            const content = document.createElement("div");
+            content.className = "news-card-copy";
+
+            const date = document.createElement("time");
+            date.className = "news-date";
+            date.dateTime = item.date;
+            date.textContent = dateFormatter.format(new Date(`${item.date}T12:00:00`));
+
+            const title = document.createElement("h3");
+            title.textContent = item.title;
+
+            const summary = document.createElement("p");
+            summary.textContent = item.summary;
+
+            content.append(date, title, summary);
+            article.append(image, content);
+            newsList.append(article);
+          });
+        } catch (error) {
+          console.error("Fehler beim Laden der News:", error);
+          newsList.replaceChildren();
+          const status = document.createElement("p");
+          status.className = "news-status";
+          status.setAttribute("role", "status");
+          status.textContent = "Die Meldungen konnten gerade nicht geladen werden. Bitte versuche es später erneut.";
+          newsList.append(status);
+        }
+      }
+
+      loadNews();
     </script>
 </body>
 </html>
