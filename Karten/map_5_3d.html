@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutschland 3D-Gebäude (LoD2)</title>
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Cesium.js"></script>
+  <link rel="stylesheet" href="https://cesium.com/downloads/cesiumjs/releases/1.137/Build/Cesium/Widgets/widgets.css">
+  <style>
+    html,
+    body,
+    #cesium-container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .map-status {
+      position: absolute;
+      z-index: 1;
+      top: 1rem;
+      left: 50%;
+      max-width: calc(100% - 2rem);
+      padding: 0.65rem 0.9rem;
+      transform: translateX(-50%);
+      border-radius: 0.25rem;
+      background: #fffefa;
+      color: #202a24;
+      font: 14px/1.4 system-ui, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="cesium-container" aria-label="Interaktive 3D-Karte mit Gebäuden in Deutschland"></div>
+  <p class="map-status" id="map-status" role="status">3D-Gebäude werden geladen …</p>
+  <script>
+    const mapStatus = document.querySelector("#map-status");
+
+    if (typeof Cesium === "undefined") {
+      mapStatus.textContent = "Cesium konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.";
+      console.error("CesiumJS konnte nicht geladen werden.");
+    } else {
+      const viewer = new Cesium.Viewer("cesium-container", {
+        shadows: false,
+        geocoder: false,
+        baseLayerPicker: false,
+        baseLayer: false,
+        requestRenderMode: true,
+        maximumRenderTimeChange: Infinity
+      });
+
+      const osm = new Cesium.OpenStreetMapImageryProvider({
+        url: "https://a.tile.openstreetmap.org/",
+        credit: new Cesium.Credit(
+          '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">&copy; OpenStreetMap contributors</a>',
+          true
+        )
+      });
+      viewer.imageryLayers.addImageryProvider(osm);
+
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(8.226646983932763, 49.988427329774865, 1500),
+        orientation: {
+          heading: Cesium.Math.toRadians(0),
+          pitch: Cesium.Math.toRadians(-50),
+          roll: 0
+        }
+      });
+
+      async function loadBuildings() {
+        try {
+          const tileset = await Cesium.Cesium3DTileset.fromUrl(
+            "https://sgx.geodatenzentrum.de/gdz_basemapde_3d_gebaeude/lod2_4326_null.json",
+            {
+              showOutline: false,
+              maximumScreenSpaceError: 24,
+              cacheBytes: 268435456,
+              maximumCacheOverflowBytes: 536870912,
+              skipLevelOfDetail: true,
+              loadSiblings: false
+            }
+          );
+
+          viewer.scene.primitives.add(tileset);
+          tileset.style = new Cesium.Cesium3DTileStyle({
+            color: {
+              conditions: [
+                ["${surface} === 'wall'", "color('#f2f2f2')"],
+                ["${surface} === 'roof'", "color('#ff5c4d')"],
+                ["${surface} === 'bridge'", "color('#999999')"]
+              ]
+            }
+          });
+          mapStatus.hidden = true;
+        } catch (error) {
+          console.error("Der 3D-Gebäudelayer konnte nicht geladen werden:", error);
+          mapStatus.textContent = "Der 3D-Gebäudelayer konnte nicht geladen werden. Bitte versuche es später erneut.";
+        }
+      }
+
+      loadBuildings();
+    }
+  </script>
+</body>
+</html>

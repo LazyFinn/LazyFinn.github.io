@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schematisches 3D-Campusmodell mit Three.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <style>
+    html,
+    body,
+    #scene {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      background: #e9eee6;
+      color: #202a24;
+      font: 14px/1.4 system-ui, sans-serif;
+    }
+
+    #scene canvas {
+      display: block;
+    }
+
+    .scene-label,
+    .scene-help {
+      position: absolute;
+      z-index: 1;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid rgb(36 91 67 / 18%);
+      border-radius: 0.35rem;
+      background: rgb(255 254 250 / 92%);
+      box-shadow: 0 2px 10px rgb(32 42 36 / 8%);
+    }
+
+    .scene-label {
+      top: 0.75rem;
+      left: 0.75rem;
+      color: #245b43;
+      font-weight: 700;
+    }
+
+    .scene-help {
+      right: 0.75rem;
+      bottom: 0.75rem;
+      color: #536159;
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 420px) {
+      .scene-label,
+      .scene-help {
+        max-width: calc(100% - 2rem);
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="scene" aria-label="Drehbares schematisches 3D-Campusmodell"></div>
+  <div class="scene-label" id="scene-status" role="status">3D-Campusmodell wird geladen …</div>
+  <div class="scene-help">Ziehen: drehen · Scrollen: zoomen · Rechts ziehen: verschieben</div>
+  <script>
+    const sceneElement = document.querySelector("#scene");
+    const sceneStatus = document.querySelector("#scene-status");
+
+    window.addEventListener("error", (event) => {
+      if (event.target instanceof HTMLScriptElement) {
+        sceneStatus.textContent = "Three.js konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.";
+      }
+    }, true);
+
+    if (typeof THREE === "undefined" || typeof THREE.OrbitControls === "undefined") {
+      console.error("Three.js oder OrbitControls konnte nicht geladen werden.");
+      sceneStatus.textContent = "Three.js konnte nicht geladen werden. Bitte prüfe deine Internetverbindung.";
+    } else {
+      const center = { longitude: 8.2266469839, latitude: 49.9884273298 };
+      const longitudeScale = 111320 * Math.cos(THREE.MathUtils.degToRad(center.latitude));
+      const latitudeScale = 111320;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color("#e9eee6");
+
+      const camera = new THREE.PerspectiveCamera(38, 1, 1, 3000);
+      camera.position.set(360, 380, 520);
+
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+      } catch (error) {
+        console.error("Der WebGL-Renderer konnte nicht erstellt werden:", error);
+        sceneStatus.textContent = "Die 3D-Ansicht wird von diesem Browser nicht unterstützt.";
+      }
+
+      if (renderer) {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(sceneElement.clientWidth, sceneElement.clientHeight);
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        sceneElement.append(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.06;
+        controls.minDistance = 180;
+        controls.maxDistance = 1000;
+        controls.maxPolarAngle = Math.PI * 0.48;
+        controls.target.set(0, 20, 0);
+
+        scene.add(new THREE.HemisphereLight(0xffffff, 0x647464, 2.1));
+        const sunlight = new THREE.DirectionalLight(0xffffff, 2.4);
+        sunlight.position.set(-250, 450, 300);
+        scene.add(sunlight);
+
+        const ground = new THREE.Mesh(
+          new THREE.PlaneGeometry(720, 620),
+          new THREE.MeshStandardMaterial({ color: "#f5f4ef", roughness: 1 })
+        );
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = -1;
+        scene.add(ground);
+
+        const grid = new THREE.GridHelper(720, 24, 0xb5c8b6, 0xd9e1d7);
+        grid.position.y = 0;
+        scene.add(grid);
+
+        function toCoordinate(east, north) {
+          return [
+            center.longitude + east / longitudeScale,
+            center.latitude + north / latitudeScale
+          ];
+        }
+
+        function rectangle(east, north, width, depth) {
+          const halfWidth = width / 2;
+          const halfDepth = depth / 2;
+          return [[
+            toCoordinate(east - halfWidth, north - halfDepth),
+            toCoordinate(east + halfWidth, north - halfDepth),
+            toCoordinate(east + halfWidth, north + halfDepth),
+            toCoordinate(east - halfWidth, north + halfDepth),
+            toCoordinate(east - halfWidth, north - halfDepth)
+          ]];
+        }
+
+        const campusGeoJson = {
+          type: "FeatureCollection",
+          features: [
+            { type: "Feature", properties: { name: "Hauptgebäude", height: 48 }, geometry: { type: "Polygon", coordinates: rectangle(-125, 75, 115, 55) } },
+            { type: "Feature", properties: { name: "Hörsaalgebäude", height: 34 }, geometry: { type: "Polygon", coordinates: rectangle(15, 80, 88, 58) } },
+            { type: "Feature", properties: { name: "Bibliothek", height: 27 }, geometry: { type: "Polygon", coordinates: rectangle(145, 58, 92, 62) } },
+            { type: "Feature", properties: { name: "Seminargebäude", height: 23 }, geometry: { type: "Polygon", coordinates: rectangle(-72, -52, 72, 65) } },
+            { type: "Feature", properties: { name: "Laborgebäude", height: 39 }, geometry: { type: "Polygon", coordinates: rectangle(45, -68, 128, 48) } },
+            { type: "Feature", properties: { name: "Mensa", height: 20 }, geometry: { type: "Polygon", coordinates: rectangle(178, -63, 76, 50) } }
+          ]
+        };
+
+        function projectCoordinate([longitude, latitude]) {
+          return {
+            x: (longitude - center.longitude) * longitudeScale,
+            z: -(latitude - center.latitude) * latitudeScale
+          };
+        }
+
+        function addBuilding(feature) {
+          const ring = feature.geometry.coordinates[0];
+          const footprint = new THREE.Shape();
+          ring.forEach((coordinate, index) => {
+            const point = projectCoordinate(coordinate);
+            if (index === 0) {
+              footprint.moveTo(point.x, point.z);
+            } else {
+              footprint.lineTo(point.x, point.z);
+            }
+          });
+
+          const height = feature.properties.height;
+          const geometry = new THREE.ExtrudeGeometry(footprint, {
+            depth: height,
+            bevelEnabled: false,
+            steps: 1
+          });
+          geometry.rotateX(-Math.PI / 2);
+          geometry.computeVertexNormals();
+
+          const color = height >= 40 ? "#245b43" : height >= 30 ? "#568667" : "#9bbd83";
+          const building = new THREE.Mesh(
+            geometry,
+            new THREE.MeshStandardMaterial({ color, roughness: 0.78, metalness: 0.02 })
+          );
+          building.userData.name = feature.properties.name;
+          scene.add(building);
+
+          const outlinePoints = ring.slice(0, -1).map((coordinate) => {
+            const point = projectCoordinate(coordinate);
+            return new THREE.Vector3(point.x, height + 0.2, point.z);
+          });
+          const outline = new THREE.LineLoop(
+            new THREE.BufferGeometry().setFromPoints(outlinePoints),
+            new THREE.LineBasicMaterial({ color: "#d9ed9a" })
+          );
+          scene.add(outline);
+        }
+
+        campusGeoJson.features.forEach(addBuilding);
+
+        function resizeScene() {
+          const width = sceneElement.clientWidth;
+          const height = sceneElement.clientHeight;
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+          renderer.setSize(width, height);
+        }
+
+        window.addEventListener("resize", resizeScene);
+        sceneStatus.textContent = "GeoJSON · schematische Gebäudehöhen";
+
+        function animate() {
+          requestAnimationFrame(animate);
+          controls.update();
+          renderer.render(scene, camera);
+        }
+
+        animate();
+      }
+    }
+  </script>
+</body>
+</html>

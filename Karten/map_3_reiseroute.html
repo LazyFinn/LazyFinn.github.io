@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_582083a95b7b833a8c6a4d00de293901 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_582083a95b7b833a8c6a4d00de293901" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_582083a95b7b833a8c6a4d00de293901 = L.map(
+                "map_582083a95b7b833a8c6a4d00de293901",
+                {
+                    center: [25.0, -30.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_26b3ef74b4fc943561e8fc719d3829e8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+  "referrerPolicy": "origin",
+}
+
+            );
+        
+    
+            tile_layer_26b3ef74b4fc943561e8fc719d3829e8.addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var poly_line_901732c4e385b8efdf8255ec03ad3125 = L.polyline(
+                [[49.2494, 7.3608], [50.0379, 8.5622], [41.2751, 28.7519], [10.6012, -66.9913], [10.9971, -63.9113]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            poly_line_901732c4e385b8efdf8255ec03ad3125.bindTooltip(
+                `<div>
+                     Reiseroute
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ed412958598ec794640b024cdc42b05f = L.marker(
+                [49.2494, 7.3608],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var div_icon_6ee3b895c2c4dfe77e86973243e6a999 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12pt; color: white; background-color: blue; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-weight: bold;\"\u003e1\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+                marker_ed412958598ec794640b024cdc42b05f.setIcon(div_icon_6ee3b895c2c4dfe77e86973243e6a999);
+            
+    
+            var marker_f2b0b1c607ba59a2e1e988521bac5630 = L.marker(
+                [49.2494, 7.3608],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var icon_c7158b2ed8f7b3e004ba3088898b768e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3a454b7bce47cbeb0e3c2504b1ffec1a = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_824a6243cde31f695587d906c16b2a2a = $(`<div id="html_824a6243cde31f695587d906c16b2a2a" style="width: 100.0%; height: 100.0%;"><b>Station 1: Zweibrücken</b></div>`)[0];
+                popup_3a454b7bce47cbeb0e3c2504b1ffec1a.setContent(html_824a6243cde31f695587d906c16b2a2a);
+            
+        
+
+        marker_f2b0b1c607ba59a2e1e988521bac5630.bindPopup(popup_3a454b7bce47cbeb0e3c2504b1ffec1a)
+        ;
+
+        
+    
+    
+            marker_f2b0b1c607ba59a2e1e988521bac5630.bindTooltip(
+                `<div>
+                     Station 1: Zweibrücken
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f2b0b1c607ba59a2e1e988521bac5630.setIcon(icon_c7158b2ed8f7b3e004ba3088898b768e);
+            
+    
+            var marker_15d1cb9d8728f66c260b878caae0f12d = L.marker(
+                [50.0379, 8.5622],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var div_icon_25f8fe70e670343c0bd2e87fecfd4c50 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12pt; color: white; background-color: blue; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-weight: bold;\"\u003e2\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+                marker_15d1cb9d8728f66c260b878caae0f12d.setIcon(div_icon_25f8fe70e670343c0bd2e87fecfd4c50);
+            
+    
+            var marker_c517a65b3550d9b6c72e5404ef9747e7 = L.marker(
+                [50.0379, 8.5622],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var icon_44f8d18603e5ad656f9f7adbce42b246 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "plane",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e1c94c6dd33999c99cc2038a70489524 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_7ca21ed4a5eb8f9cc744697aa8ff0bc9 = $(`<div id="html_7ca21ed4a5eb8f9cc744697aa8ff0bc9" style="width: 100.0%; height: 100.0%;"><b>Station 2: Frankfurt Airport</b></div>`)[0];
+                popup_e1c94c6dd33999c99cc2038a70489524.setContent(html_7ca21ed4a5eb8f9cc744697aa8ff0bc9);
+            
+        
+
+        marker_c517a65b3550d9b6c72e5404ef9747e7.bindPopup(popup_e1c94c6dd33999c99cc2038a70489524)
+        ;
+
+        
+    
+    
+            marker_c517a65b3550d9b6c72e5404ef9747e7.bindTooltip(
+                `<div>
+                     Station 2: Frankfurt Airport
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c517a65b3550d9b6c72e5404ef9747e7.setIcon(icon_44f8d18603e5ad656f9f7adbce42b246);
+            
+    
+            var marker_ee83701038971cdd564b25dbcad82a43 = L.marker(
+                [41.2751, 28.7519],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var div_icon_deb3db611a9d4a89d36891fae91da298 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12pt; color: white; background-color: blue; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-weight: bold;\"\u003e3\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+                marker_ee83701038971cdd564b25dbcad82a43.setIcon(div_icon_deb3db611a9d4a89d36891fae91da298);
+            
+    
+            var marker_67116c9503c91293d2f9f7f02202e21b = L.marker(
+                [41.2751, 28.7519],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var icon_033b44d23d39d04d28740da1dbdf888a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "plane",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f2cbd4eaf7d9c1eb2740312ee526e20d = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_6c4bb15a33842c8bb512d658c8aa77db = $(`<div id="html_6c4bb15a33842c8bb512d658c8aa77db" style="width: 100.0%; height: 100.0%;"><b>Station 3: Istanbul Airport</b></div>`)[0];
+                popup_f2cbd4eaf7d9c1eb2740312ee526e20d.setContent(html_6c4bb15a33842c8bb512d658c8aa77db);
+            
+        
+
+        marker_67116c9503c91293d2f9f7f02202e21b.bindPopup(popup_f2cbd4eaf7d9c1eb2740312ee526e20d)
+        ;
+
+        
+    
+    
+            marker_67116c9503c91293d2f9f7f02202e21b.bindTooltip(
+                `<div>
+                     Station 3: Istanbul Airport
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_67116c9503c91293d2f9f7f02202e21b.setIcon(icon_033b44d23d39d04d28740da1dbdf888a);
+            
+    
+            var marker_efe4e154da51bac43d7882b5161aa9de = L.marker(
+                [10.6012, -66.9913],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var div_icon_4d8a7bb1682d88346c9df92c7046bde4 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12pt; color: white; background-color: blue; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-weight: bold;\"\u003e4\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+                marker_efe4e154da51bac43d7882b5161aa9de.setIcon(div_icon_4d8a7bb1682d88346c9df92c7046bde4);
+            
+    
+            var marker_d9d004f7d81a042561b913bb1503caae = L.marker(
+                [10.6012, -66.9913],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var icon_1f4c902f978604a1ad8e81a38f99fc5c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "plane",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6ea3b7335b8dd46da29d8f8b3cc25a77 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_ce378ca6b19cd2f222bcbdebdc6bc3b6 = $(`<div id="html_ce378ca6b19cd2f222bcbdebdc6bc3b6" style="width: 100.0%; height: 100.0%;"><b>Station 4: Caracas Airport</b></div>`)[0];
+                popup_6ea3b7335b8dd46da29d8f8b3cc25a77.setContent(html_ce378ca6b19cd2f222bcbdebdc6bc3b6);
+            
+        
+
+        marker_d9d004f7d81a042561b913bb1503caae.bindPopup(popup_6ea3b7335b8dd46da29d8f8b3cc25a77)
+        ;
+
+        
+    
+    
+            marker_d9d004f7d81a042561b913bb1503caae.bindTooltip(
+                `<div>
+                     Station 4: Caracas Airport
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9d004f7d81a042561b913bb1503caae.setIcon(icon_1f4c902f978604a1ad8e81a38f99fc5c);
+            
+    
+            var marker_e34063f08a81ffe8bbb8353dea63b937 = L.marker(
+                [10.9971, -63.9113],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var div_icon_38ccdd2fc6b7288007efc190ee748f46 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size: 12pt; color: white; background-color: blue; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; font-weight: bold;\"\u003e5\u003c/div\u003e",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+                marker_e34063f08a81ffe8bbb8353dea63b937.setIcon(div_icon_38ccdd2fc6b7288007efc190ee748f46);
+            
+    
+            var marker_7ffd633fd4e2d3a5be21cb4fcfb5ceb9 = L.marker(
+                [10.9971, -63.9113],
+                {
+}
+            ).addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+            var icon_5e8c024718ec1b1b0744570706a7978e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_841642edb69dc0609eaa31b8d5044479 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_60afd92cff2fb0428533a42a4dd4721c = $(`<div id="html_60afd92cff2fb0428533a42a4dd4721c" style="width: 100.0%; height: 100.0%;"><b>Station 5: Isla de Margarita</b></div>`)[0];
+                popup_841642edb69dc0609eaa31b8d5044479.setContent(html_60afd92cff2fb0428533a42a4dd4721c);
+            
+        
+
+        marker_7ffd633fd4e2d3a5be21cb4fcfb5ceb9.bindPopup(popup_841642edb69dc0609eaa31b8d5044479)
+        ;
+
+        
+    
+    
+            marker_7ffd633fd4e2d3a5be21cb4fcfb5ceb9.bindTooltip(
+                `<div>
+                     Station 5: Isla de Margarita
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ffd633fd4e2d3a5be21cb4fcfb5ceb9.setIcon(icon_5e8c024718ec1b1b0744570706a7978e);
+            
+    
+            map_582083a95b7b833a8c6a4d00de293901.fitBounds(
+                [[49.2494, 7.3608], [50.0379, 8.5622], [41.2751, 28.7519], [10.6012, -66.9913], [10.9971, -63.9113]],
+                {"padding": [30, 30]}
+            );
+        
+    
+            tile_layer_26b3ef74b4fc943561e8fc719d3829e8.addTo(map_582083a95b7b833a8c6a4d00de293901);
+        
+    
+                marker_ed412958598ec794640b024cdc42b05f.setIcon(div_icon_6ee3b895c2c4dfe77e86973243e6a999);
+            
+    
+                marker_f2b0b1c607ba59a2e1e988521bac5630.setIcon(icon_c7158b2ed8f7b3e004ba3088898b768e);
+            
+    
+                marker_15d1cb9d8728f66c260b878caae0f12d.setIcon(div_icon_25f8fe70e670343c0bd2e87fecfd4c50);
+            
+    
+                marker_c517a65b3550d9b6c72e5404ef9747e7.setIcon(icon_44f8d18603e5ad656f9f7adbce42b246);
+            
+    
+                marker_ee83701038971cdd564b25dbcad82a43.setIcon(div_icon_deb3db611a9d4a89d36891fae91da298);
+            
+    
+                marker_67116c9503c91293d2f9f7f02202e21b.setIcon(icon_033b44d23d39d04d28740da1dbdf888a);
+            
+    
+                marker_efe4e154da51bac43d7882b5161aa9de.setIcon(div_icon_4d8a7bb1682d88346c9df92c7046bde4);
+            
+    
+                marker_d9d004f7d81a042561b913bb1503caae.setIcon(icon_1f4c902f978604a1ad8e81a38f99fc5c);
+            
+    
+                marker_e34063f08a81ffe8bbb8353dea63b937.setIcon(div_icon_38ccdd2fc6b7288007efc190ee748f46);
+            
+    
+                marker_7ffd633fd4e2d3a5be21cb4fcfb5ceb9.setIcon(icon_5e8c024718ec1b1b0744570706a7978e);
+            
+</script>
+</html>
